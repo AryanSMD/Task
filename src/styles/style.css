@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bgColor: #f9f1f1;
+    --primaryColor: #2f0935;
+    --secondaryColor: #3e3e3e;
+    --textColor: #737475;
+}
+
+*,
+*::before,
+*::after {
+    @apply
+    m-0 p-0 box-border select-none
+}
+
+.wrapper {
+    @apply
+    w-screen min-h-screen bg-bgColor text-textColor text-[1rem]
+}
+
+label {
+    @apply
+    w-full flex justify-end items-center text-primaryColor mb-1
+}
+
+input {
+    @apply
+    w-full h-[45px] p-2 outline-none border-[1px] rounded-[12px] transition-colors duration-300 
+    focus:border-secondaryColor cursor-pointer text-end
+}
+input.err {
+    @apply
+    border-red-400 mb-[-3px]
+}
+
+input[type=checkbox] {
+    @apply
+    hidden
+}
+input[type=checkbox]+label {
+    background: url('../assets/svg/square.svg') 100% 50% no-repeat;
+    @apply
+    w-full cursor-pointer pr-[35px] transition-all duration-300
+}
+input[type=checkbox]:checked+label {
+    background: url('../assets/svg/checked.svg') 100% 50% no-repeat;
+}
+
+input[type=radio] {
+    @apply
+    hidden
+}
+input[type=radio]+label {
+    background: url('../assets/svg/circle.svg') 100% 50% no-repeat;
+    @apply
+    w-full cursor-pointer pr-[35px] transition-all duration-300
+}
+input[type=radio]:checked+label {
+    background: url('../assets/svg/circleDot.svg') 100% 50% no-repeat;
+}
+
+input[type=file] {
+    @apply
+    hidden
+}
+
+::-webkit-calendar-picker-indicator {
+    background: url('../assets/svg/calendar.svg');
+}
+
+select {
+    -webkit-appearance: none;
+    appearance: none;
+    background: url('../assets/svg/arrowDown.svg') 1% 50% no-repeat;
+    background-size: 25px;
+
+    @apply
+    w-full h-[45px] p-2 outline-none border-[1px] rounded-[12px] transition-colors duration-300 
+    focus:border-secondaryColor cursor-pointer text-end
+}
+select.err {
+    @apply
+    border-red-400 mb-[-3px]
+}
