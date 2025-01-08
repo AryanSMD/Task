@@ -1,5 +1,6 @@
 import axios, { type AxiosInstance } from "axios";
 import { showLoadingScreen, hideLoadingScreen } from "@/composables/LoadingScreen";
+import { showError } from "@/composables/Error";
 
 let isRefreshing: boolean = false;
 let refreshSubscribers: Array<(newToken: string) => void> = [];
@@ -13,6 +14,8 @@ function addRefreshSubscriber(callback: (newToken: string) => void) {
   refreshSubscribers.push(callback);
 }
 
+
+
 const api: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BaseURL,
 })
@@ -20,6 +23,7 @@ const api: AxiosInstance = axios.create({
 api.interceptors.request.use(
   config => {
     showLoadingScreen();
+
     const token: string|null = localStorage.getItem('accessToken');
 
     if (token) {
@@ -30,6 +34,7 @@ api.interceptors.request.use(
 
   }, 
   error => {
+    showError('یک خطای غیر منتظره رخ داد');
     hideLoadingScreen();
     return Promise.reject(error);
   }

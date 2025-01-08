@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { show } from '@/composables/LoadingScreen';
+import { loadingScreen } from '@/composables/LoadingScreen';
 </script>
 
 
 <template>
     <div 
-        v-if="show"
-        class="fixed w-full h-full z-[100] bg-black bg-opacity-70 flex justify-center
-            items-center"
+        v-if="loadingScreen"
+        class="fixed top-0 left-0 w-full h-full z-[100] bg-black bg-opacity-70 flex 
+            justify-center items-center"
     >
         <div class="p-5 bg-bgColor flex justify-center items-center rounded-md">
             <div class="half-circle-spinner">
