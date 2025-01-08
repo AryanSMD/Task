@@ -20,4 +20,8 @@ export default [
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
   },
+
+  {
+    'vue/multi-word-component-names': 'off'
+  }
 ]

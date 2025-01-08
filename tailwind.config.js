@@ -11,6 +11,14 @@ export default {
         'primaryColor': 'var(--primaryColor)',
         'secondaryColor': 'var(--secondaryColor)',
         'textColor': 'var(--textColor)',
+      },
+      animation: {
+        err: 'err 1s infinite alternate'
+      },
+      keyframes: {
+        err: {
+          '100%': { opacity: '20%' }
+        }
       }
     },
   },

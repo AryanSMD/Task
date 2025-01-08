@@ -1,19 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LoginPage from '../pages/LoginPage.vue'
-import FormsPage from '../pages/FormsPage.vue'
+import Login from '../pages/Login.vue'
+import Forms from '../pages/Forms.vue'
+import NotFound from '../pages/NotFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'loginPage',
-      component: LoginPage,
+      name: 'login',
+      component: Login,
     },
     {
       path: '/forms',
-      name: 'FormsPage',
-      component: FormsPage,
+      name: 'forms',
+      component: Forms,
+    },
+    {
+      name: '404-NotFound',
+      path: '/:pathMatch(.*)*',
+      component: NotFound,
     },
   ],
 })

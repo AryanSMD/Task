@@ -1,4 +1,5 @@
 import axios, { type AxiosInstance } from "axios";
+import { showLoadingScreen, hideLoadingScreen } from "@/composables/LoadingScreen";
 
 let isRefreshing: boolean = false;
 let refreshSubscribers: Array<(newToken: string) => void> = [];
@@ -18,6 +19,7 @@ const api: AxiosInstance = axios.create({
 
 api.interceptors.request.use(
   config => {
+    showLoadingScreen();
     const token: string|null = localStorage.getItem('accessToken');
 
     if (token) {
@@ -28,12 +30,16 @@ api.interceptors.request.use(
 
   }, 
   error => {
+    hideLoadingScreen();
     return Promise.reject(error);
   }
 )
 
 api.interceptors.response.use(
-  response => response,
+  response => {
+    hideLoadingScreen();
+    return response
+  },
   async error => {
     const originalRequest = error.config;
 
@@ -70,10 +76,11 @@ api.interceptors.response.use(
 
       } 
       finally {
+        hideLoadingScreen();
         isRefreshing = false;
       }
     }
-
+    hideLoadingScreen();
     return Promise.reject(error);
   }
 );

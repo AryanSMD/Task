@@ -12,6 +12,7 @@
 *,
 *::before,
 *::after {
+    direction: rtl;
     @apply
     m-0 p-0 box-border select-none
 }
@@ -23,17 +24,21 @@
 
 label {
     @apply
-    w-full flex justify-end items-center text-primaryColor mb-1
+    w-full block text-primaryColor font-medium mb-2
+}
+
+.label-err {
+    @apply 
+    text-red-400 text-[.9rem] animate-err
 }
 
 input {
     @apply
     w-full h-[45px] p-2 outline-none border-[1px] rounded-[12px] transition-colors duration-300 
-    focus:border-secondaryColor cursor-pointer text-end
+    focus:border-secondaryColor cursor-pointer
 }
-input.err {
-    @apply
-    border-red-400 mb-[-3px]
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 input[type=checkbox] {
@@ -67,10 +72,6 @@ input[type=file] {
     hidden
 }
 
-::-webkit-calendar-picker-indicator {
-    background: url('../assets/svg/calendar.svg');
-}
-
 select {
     -webkit-appearance: none;
     appearance: none;
@@ -79,9 +80,10 @@ select {
 
     @apply
     w-full h-[45px] p-2 outline-none border-[1px] rounded-[12px] transition-colors duration-300 
-    focus:border-secondaryColor cursor-pointer text-end
+    focus:border-secondaryColor cursor-pointer
 }
-select.err {
+
+*.err {
     @apply
-    border-red-400 mb-[-3px]
+    !border-red-400 mb-[-2px]
 }
