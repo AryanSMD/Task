@@ -1,43 +1,46 @@
-import axios from "axios";
+import axios, { type AxiosInstance } from "axios";
 
-let isRefreshing = false;
-let refreshSubscribers = [];
+let isRefreshing: boolean = false;
+let refreshSubscribers: Array<(newToken: string) => void> = [];
 
-function onTokenRefreshed(newToken) {
-  refreshSubscribers.forEach((callback) => callback(newToken));
+function onTokenRefreshed(newToken: string) {
+  refreshSubscribers.forEach(callback => callback(newToken));
   refreshSubscribers = [];
 }
 
-function addRefreshSubscriber(callback) {
+function addRefreshSubscriber(callback: (newToken: string) => void) {
   refreshSubscribers.push(callback);
 }
 
-const api = axios.create({
+const api: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BaseURL,
-});
+})
 
 api.interceptors.request.use(
   config => {
-    const token = localStorage.getItem("accessToken");
+    const token: string|null = localStorage.getItem('accessToken');
+
     if (token) {
       config.headers.Authorization = `Bearer ${ token }`;
     }
 
     return config;
-  },
 
-  error => Promise.reject(error)
-);
+  }, 
+  error => {
+    return Promise.reject(error);
+  }
+)
 
 api.interceptors.response.use(
   response => response,
   async error => {
     const originalRequest = error.config;
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 403 && !originalRequest._retry) {
       if (isRefreshing) {
         return new Promise((resolve) => {
-          addRefreshSubscriber((newToken) => {
+          addRefreshSubscriber((newToken: string) => {
             originalRequest.headers.Authorization = `Bearer ${ newToken }`;
             resolve(api(originalRequest));
           });
@@ -57,13 +60,17 @@ api.interceptors.response.use(
 
         onTokenRefreshed(newToken);
 
-        isRefreshing = false;
 
         originalRequest.headers.Authorization = `Bearer ${ newToken }`;
         return api(originalRequest);
-      } catch (Err) {
-        isRefreshing = false;
+
+      } 
+      catch (Err) {
         return Promise.reject(Err);
+
+      } 
+      finally {
+        isRefreshing = false;
       }
     }
 
