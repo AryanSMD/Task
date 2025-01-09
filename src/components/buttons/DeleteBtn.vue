@@ -11,7 +11,7 @@
 <style scoped>
 .btn {
     @apply
-    h-full p-3 cursor-pointer hover:text-white hover:bg-primaryColor
+    h-full p-3 cursor-pointer hover:text-white hover:bg-secondaryColor
     transition-colors duration-300
 }
 </style>

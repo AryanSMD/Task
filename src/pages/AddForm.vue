@@ -1,26 +1,15 @@
 <script setup lang="ts">
-import { onBeforeMount, provide, reactive, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { formTypes } from '@/constant/formInfo';
 import Section from '@/components/Section.vue';
 import AddSection from '@/components/buttons/AddSection.vue';
+import { useStore } from '@/stores/store';
 
 
 const route = useRoute();
+const newForm = useStore().newForm;
 const editMode = ref <boolean> (false);
-const newForm = reactive <Form> ({
-    form_title: '',
-    form_type: 'public',
-    description: '',
-    sections: [
-        {
-            title: '',
-            type: 'text',
-            required: false
-        },
-    ]
-});
-provide('sections', newForm.sections);
 
 function addNewSection() {
     newForm.sections.push({
@@ -89,8 +78,9 @@ onBeforeMount(() => {
             </div>
         </div>
         <Section 
-            v-for="section in newForm.sections"
-            :key="section.title"
+            v-for="section, index in newForm.sections"
+            :key="section.type"
+            :sectionIndex="index"
         />
         <AddSection @click="addNewSection" />
     </div>

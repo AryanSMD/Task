@@ -1,13 +1,41 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useStore } from '@/stores/store';
 import { sectionTypes } from '@/constant/formInfo';
 import MoveBtn from './buttons/MoveBtn.vue';
 import DuplicateBtn from './buttons/DuplicateBtn.vue';
 import DeleteBtn from './buttons/DeleteBtn.vue';
 import SwitchBtn from './buttons/SwitchBtn.vue';
+import { computed } from 'vue';
 
-const sectionTitle = ref <string> ();
-const sectionType = ref <SectionTypes> ('text');
+
+const props = defineProps<{
+    sectionIndex: number
+}>()
+const newForm = useStore().newForm;
+
+
+const isFirstIndex = computed(() => props.sectionIndex === 0);
+const isLastIndex = computed(() => props.sectionIndex === (newForm.sections.length - 1));
+
+
+function moveUp() {
+    const newInd = props.sectionIndex - 1;
+    swaper(newForm.sections, newInd, props.sectionIndex)
+}
+
+function moveDown() {
+    const newInd = props.sectionIndex + 1;
+    swaper(newForm.sections, newInd, props.sectionIndex)
+}
+
+function swaper(array: Sections[], newInd: number, oldInd: number) {
+    array[newInd] = array.splice(oldInd, 1, array[newInd])[0];
+}
+
+function changeRequired() {
+    const required = newForm.sections[props.sectionIndex].required;
+    newForm.sections[props.sectionIndex].required = !required;
+}
 </script>
 
 
@@ -18,11 +46,11 @@ const sectionType = ref <SectionTypes> ('text');
                 <input 
                     type="text" 
                     placeholder="عنوان پرسش"
-                    v-model="sectionTitle"
+                    v-model="newForm.sections[props.sectionIndex].title"
                 >
             </div>
             <div>
-                <select v-model="sectionType">
+                <select v-model="newForm.sections[props.sectionIndex].type">
                     <option 
                         v-for="type in sectionTypes"
                         :key="type.key"
@@ -34,18 +62,21 @@ const sectionType = ref <SectionTypes> ('text');
             </div>
             <div class="w-full col-span-2 col-start-4 flex items-center justify-end gap-5">
                 <SwitchBtn 
-                    :required="false"
-                    :changeRequired="() => {}"
+                    :required="newForm.sections[props.sectionIndex].required"
+                    :changeRequired="changeRequired"
                 />
-                <DeleteBtn />
+                <DeleteBtn @click="newForm.sections.splice(props.sectionIndex, 1)" />
                 <DuplicateBtn />
                 <MoveBtn 
-                    :canMoveDown="false"
-                    :moveDown="() => { console.log('up') }"
-                    :canMoveUp="true"
-                    :moveUp="() => { console.log('up') }"
+                    :isLastIndex="isLastIndex"
+                    :moveDown="moveDown"
+                    :isFirstIndex="isFirstIndex"
+                    :moveUp="moveUp"
                 />
             </div>
+        </div>
+        <div class="w-full grid grid-cols-5">
+            <component :is=""></component>
         </div>
     </div>
 </template>
