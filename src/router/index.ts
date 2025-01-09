@@ -23,13 +23,8 @@ const router = createRouter({
           component: Forms,
         },
         {
-          path: 'add',
-          name: 'addForm',
-          component: AddForm,
-        },
-        {
           path: ':id',
-          name: 'editForm',
+          name: 'addForm',
           component: AddForm,
         },
       ]

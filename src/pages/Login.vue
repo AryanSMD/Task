@@ -14,7 +14,7 @@ const userInfo = ref <UserInfo> ({
 
 async function login() {
     const req = await loginAPI(userInfo.value);
-    if ((req as AxiosResponse).status === 200) {
+    if (req?.status === 200) {
         router.push({ name: 'forms' });
     }
 }

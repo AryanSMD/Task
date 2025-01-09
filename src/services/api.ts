@@ -6,14 +6,15 @@ let isRefreshing: boolean = false;
 let refreshSubscribers: Array<(newToken: string) => void> = [];
 
 function onTokenRefreshed(newToken: string) {
-  refreshSubscribers.forEach(callback => callback(newToken));
-  refreshSubscribers = [];
+  if (refreshSubscribers.length) {
+    refreshSubscribers.forEach(callback => callback(newToken));
+    refreshSubscribers = [];
+  }
 }
 
 function addRefreshSubscriber(callback: (newToken: string) => void) {
   refreshSubscribers.push(callback);
 }
-
 
 
 const api: AxiosInstance = axios.create({
@@ -23,13 +24,10 @@ const api: AxiosInstance = axios.create({
 api.interceptors.request.use(
   config => {
     showLoadingScreen();
-
     const token = localStorage.getItem('accessToken');
-
     if (token) {
       config.headers.Authorization = `Bearer ${ token }`;
     }
-
     return config;
 
   }, 
@@ -47,8 +45,7 @@ api.interceptors.response.use(
   },
   async error => {
     const originalRequest = error.config;
-
-    if (error.response?.status === 403 && !originalRequest._retry) {
+    if (error.status === 403 && !originalRequest._retry) {
       if (isRefreshing) {
         return new Promise(resolve => {
           addRefreshSubscriber((newToken: string) => {
@@ -60,9 +57,9 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       isRefreshing = true;
       try {
-        const response = await axios.post(`${ import.meta.env.VITE_BaseURL }main/refresh`, {
-          token: localStorage.getItem("refreshToken"),
-        });
+        const response = await axios.post(
+          `${ import.meta.env.VITE_BaseURL }main/refresh?token=${ localStorage.getItem("refreshToken") }`
+        );
         const newToken = response.data.data.access;
         localStorage.setItem("accessToken", newToken);
         onTokenRefreshed(newToken);
@@ -70,9 +67,8 @@ api.interceptors.response.use(
         return api(originalRequest);
 
       } 
-      catch (Err) {
-        return Promise.reject(Err);
-
+      catch (err) {
+        return Promise.reject(err);
       } 
       finally {
         hideLoadingScreen();

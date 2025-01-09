@@ -9,9 +9,7 @@
     --textColor: #737475;
 }
 
-*,
-*::before,
-*::after {
+* {
     direction: rtl;
     @apply
     m-0 p-0 box-border select-none
@@ -26,10 +24,12 @@ body {
     @apply
     w-[4px]
 }
+
 ::-webkit-scrollbar-track {
     @apply
     bg-transparent overflow-hidden
 }
+
 ::-webkit-scrollbar-thumb {
     @apply
     bg-primaryColor rounded-full
@@ -55,6 +55,7 @@ input {
     w-full h-[45px] p-2 outline-none border-[1px] rounded-[12px] transition-colors duration-300 
     focus:border-secondaryColor cursor-pointer
 }
+
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
@@ -63,11 +64,13 @@ input[type=checkbox] {
     @apply
     hidden
 }
+
 input[type=checkbox]+label {
     background: url('../assets/svg/square.svg') 100% 50% no-repeat;
     @apply
     w-full cursor-pointer pr-[35px] transition-all duration-300
 }
+
 input[type=checkbox]:checked+label {
     background: url('../assets/svg/checked.svg') 100% 50% no-repeat;
 }
@@ -76,11 +79,13 @@ input[type=radio] {
     @apply
     hidden
 }
+
 input[type=radio]+label {
     background: url('../assets/svg/circle.svg') 100% 50% no-repeat;
     @apply
     w-full cursor-pointer pr-[35px] transition-all duration-300
 }
+
 input[type=radio]:checked+label {
     background: url('../assets/svg/circleDot.svg') 100% 50% no-repeat;
 }
@@ -115,7 +120,7 @@ select {
 
 .card {
     @apply
-    w-full bg-white rounded-lg shadow-md p-4
+    w-full bg-white rounded-lg shadow-md p-4 overflow-hidden
 }
 
 .card .form {
