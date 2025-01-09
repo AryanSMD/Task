@@ -24,7 +24,7 @@ api.interceptors.request.use(
   config => {
     showLoadingScreen();
 
-    const token: string|null = localStorage.getItem('accessToken');
+    const token = localStorage.getItem('accessToken');
 
     if (token) {
       config.headers.Authorization = `Bearer ${ token }`;
@@ -50,28 +50,22 @@ api.interceptors.response.use(
 
     if (error.response?.status === 403 && !originalRequest._retry) {
       if (isRefreshing) {
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
           addRefreshSubscriber((newToken: string) => {
             originalRequest.headers.Authorization = `Bearer ${ newToken }`;
             resolve(api(originalRequest));
           });
         });
       }
-
       originalRequest._retry = true;
       isRefreshing = true;
-
       try {
-        const response = await axios.post("", {
+        const response = await axios.post(`${ import.meta.env.VITE_BaseURL }main/refresh`, {
           token: localStorage.getItem("refreshToken"),
         });
-
-        const newToken = response.data.accessToken;
+        const newToken = response.data.data.access;
         localStorage.setItem("accessToken", newToken);
-
         onTokenRefreshed(newToken);
-
-
         originalRequest.headers.Authorization = `Bearer ${ newToken }`;
         return api(originalRequest);
 

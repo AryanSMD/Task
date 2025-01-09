@@ -17,9 +17,27 @@
     m-0 p-0 box-border select-none
 }
 
+body {
+    @apply
+    bg-bgColor overflow-x-hidden
+}
+
+::-webkit-scrollbar {
+    @apply
+    w-[4px]
+}
+::-webkit-scrollbar-track {
+    @apply
+    bg-transparent overflow-hidden
+}
+::-webkit-scrollbar-thumb {
+    @apply
+    bg-primaryColor rounded-full
+}
+
 .wrapper {
     @apply
-    w-screen min-h-screen bg-bgColor text-textColor text-[1rem]
+    w-screen min-h-screen text-textColor text-[1rem]
 }
 
 label {
@@ -72,6 +90,13 @@ input[type=file] {
     hidden
 }
 
+textarea {
+    resize: none;
+    @apply
+    w-full h-[200px] p-2 outline-none border-[1px] rounded-[12px] transition-colors duration-300 
+    focus:border-secondaryColor cursor-pointer
+}
+
 select {
     -webkit-appearance: none;
     appearance: none;
@@ -80,10 +105,52 @@ select {
 
     @apply
     w-full h-[45px] p-2 outline-none border-[1px] rounded-[12px] transition-colors duration-300 
-    focus:border-secondaryColor cursor-pointer
+    focus:border-secondaryColor cursor-pointer disabled:bg-bgColor
 }
 
 *.err {
     @apply
     !border-red-400 mb-[-2px]
+}
+
+.card {
+    @apply
+    w-full bg-white rounded-lg shadow-md p-4
+}
+
+.card .form {
+    @apply
+    w-full grid grid-cols-5 gap-2
+}
+
+.save-btn,
+.del-btn {
+    @apply
+    py-2 px-3 font-medium rounded-[15px] flex items-center gap-1 transition-colors duration-300
+}
+
+.save-btn {
+    @apply
+    bg-secondaryColor text-white hover:bg-primaryColor
+}
+
+.del-btn {
+    @apply
+    bg-transparent text-red-500 border-[1px] border-red-500 hover:bg-red-500 hover:text-white
+}
+
+.save-btn .svg,
+.del-btn .svg {
+    @apply
+    w-5 aspect-square
+}
+
+.header {
+    @apply
+    w-full flex items-center justify-between
+}
+
+.title {
+    @apply
+    font-medium text-[2.5rem] text-primaryColor
 }
