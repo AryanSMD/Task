@@ -5,6 +5,7 @@ import { defineStore } from 'pinia'
 interface States {
   forms: Form[],
   totla_quantity: number,
+  defaultPerPage: number,
   newForm: Form
 }
 
@@ -12,6 +13,7 @@ export const useStore = defineStore('store', {
   state: (): States => ({
     forms: [],
     totla_quantity: 0,
+    defaultPerPage: 6,
     newForm: {
       form_id: '',
       form_title: '',
@@ -56,5 +58,6 @@ export const useStore = defineStore('store', {
   getters: {
     getForms: state => state.forms,
     getTotalFroms: state => state.totla_quantity,
+    getDefaultPerPage: state => state.defaultPerPage,
   }
 })

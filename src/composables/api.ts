@@ -18,7 +18,7 @@ export async function loginAPI(body: UserInfo) {
 
 export async function getFormsAPI(body: { page: number, per_page: number }) {
     try {
-        const response = await api.get(`main/forms?page=${ body.page }&per_page${ body.per_page }`);
+        const response = await api.get(`main/forms?page=${ body.page }&per_page=${ body.per_page }`);
         if (response.status === 200) {
 
             return response as AxiosResponse;

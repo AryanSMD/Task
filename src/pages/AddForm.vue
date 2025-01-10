@@ -23,7 +23,7 @@ function addNewSection() {
 }
 
 async function save() {
-    if (editMode) {
+    if (editMode.value) {
         const response = await updateFormAPI(store.newForm);
         response?.status === 200 && router.push({ name: 'forms' });
     } else {
@@ -105,7 +105,7 @@ onBeforeMount(async () => {
                     <label>نام</label>
                     <input type="text" value="آرین" disabled>
                     <label>ایمیل</label>
-                    <input type="email" value="aryansm79@gmail.com" disabled>
+                    <input type="email" value="aryansmd79@gmail.com" disabled>
                 </div>
                 <div>
                     <label>نام خانوادگی</label>

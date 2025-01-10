@@ -2,13 +2,8 @@
 import FormCard from '@/components/FormCard.vue';
 import Pagination from '@/components/Pagination.vue';
 import { useStore } from '@/stores/store';
-import { onBeforeMount } from 'vue';
 
 const store = useStore();
-
-onBeforeMount(async () => {
-    await store.getAllForms(1, 9);
-})
 </script>
 
 
@@ -42,7 +37,7 @@ onBeforeMount(async () => {
                 </div>
                 <div 
                     v-else
-                    class="w-full h-full grid grid-cols-3 grid-rows-3 gap-2"
+                    class="w-full h-full grid grid-cols-3 grid-rows-2 gap-2 pb-10"
                 >
                     <FormCard
                         v-for="form in store.getForms"
@@ -51,7 +46,9 @@ onBeforeMount(async () => {
                     />
                 </div>
             </div>
-            <Pagination />
+            <Pagination 
+                :func="store.getAllForms"
+            />
         </div>
     </div>
 </template>
