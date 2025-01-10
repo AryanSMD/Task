@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { formTypes } from '@/constant/formInfo';
+import { formTypes } from '@/constants/formInfo';
 import Section from '@/components/Section.vue';
 import AddSectionBtn from '@/components/buttons/AddSectionBtn.vue';
 import { useStore } from '@/stores/store';

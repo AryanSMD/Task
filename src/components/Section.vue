@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useStore } from '@/stores/store';
-import { sectionTypes } from '@/constant/formInfo';
+import { sectionTypes } from '@/constants/formInfo';
 import MoveBtn from './buttons/MoveBtn.vue';
 import DuplicateBtn from './buttons/DuplicateBtn.vue';
 import DeleteBtn from './buttons/DeleteBtn.vue';
