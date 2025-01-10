@@ -7,13 +7,7 @@ const props = defineProps<{
 }>()
 
 function addItem() {
-    if (newForm.sections[props.sectionIndex].properties) {
-        newForm.sections[props.sectionIndex].properties?.push('گزینه');
-
-    } else {
-        newForm.sections[props.sectionIndex].properties = [];
-        newForm.sections[props.sectionIndex].properties?.push('گزینه');
-    }
+    newForm.sections[props.sectionIndex].properties.push('گزینه');
 }
 </script>
 

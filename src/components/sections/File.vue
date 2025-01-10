@@ -1,12 +1,5 @@
-<script setup lang="ts">
-const props = defineProps<{
-    sectionIndex: number
-}>()
-</script>
-
-
 <template>
-    <div class="w-full h-[250px] bg-bgColor col-span-5 border-[1px] rounded-md flex items-center justify-center">
+    <div class="w-full h-[250px] bg-slate-200 col-span-5 border-[1px] rounded-md flex items-center justify-center">
         <div class="flex flex-col gap-2 items-center">
             <input type="file" ref="file" accept=".pdf, .jpg, .png">
             <button 

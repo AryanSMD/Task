@@ -1,21 +1,33 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 const props = defineProps<{
     form: Form
 }>()
+
+const solarDate = computed(() => {
+    const date = new Intl.DateTimeFormat("fa", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    }).format((props.form as any).createdAt);
+    return date;
+})
 </script>
 
 
 <template>
     <div class="w-full h-full flex justify-center items-center">
-        <div class="w-full h-full border-[1px] rounded-md flex flex-col justify-between p-2">
+        <div class="w-full h-full border-[1px] rounded-md flex flex-col justify-between p-2 shadow-md">
             <div 
-                class="w-full h-[60%] bg-bgColor rounded-md flex justify-center items-center
+                class="w-full h-[60%] bg-slate-200 rounded-md flex justify-center items-center
                     text-[2rem] font-bold text-primaryColor"
             >
                 {{ props.form.form_title }}
             </div>
+            <div class="font-medium">{{ solarDate }}</div>
             <button 
-                class="w-full h-10 border-[1px] rounded-[15px] text-primaryColor flex gap-2
+                class="w-full h-10 border-[1px] rounded-md text-primaryColor flex gap-2
                     justify-center items-center transition-colors duration-300
                     hover:text-white hover:bg-secondaryColor font-medium py-2"
                 @click="$router.push({ name: 'addForm', params: { id: props.form.form_id } })"

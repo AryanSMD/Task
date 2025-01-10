@@ -49,8 +49,8 @@ watch(
 
 
 <template>
-    <div class="w-full h-12 flex justify-center items-center">
-        <div class="w-1/3 h-full flex items-center justify-between">
+    <div class="w-full h-10 flex justify-center items-center">
+        <div class="w-1/5 h-full flex items-center justify-between">
             <button class="btn" @click="next" :disabled="isLastPage">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-full aspect-square" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
@@ -63,7 +63,7 @@ watch(
                     type="number" 
                     min="1"
                     :max="total"
-                    class="w-12 h-full aspect-square text-[1.2rem] text-center border-slate-300"
+                    class="w-10 h-10 text-[1.2rem] text-center border-slate-300"
                     v-model="currentPage"
                     @change="getNewPage"
                 >

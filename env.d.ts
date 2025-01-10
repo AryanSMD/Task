@@ -20,5 +20,5 @@ interface Sections {
     title: string,
     type: SectionTypes,
     required: boolean,
-    properties: []
+    properties: string[]
 }

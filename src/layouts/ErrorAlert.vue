@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { error, errorMsg } from '@/composables/Error';
+import { error, errorMsg } from '@/composables/ErrorAlert';
 </script>
 
 

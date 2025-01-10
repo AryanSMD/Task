@@ -1,6 +1,6 @@
 import axios, { type AxiosInstance } from "axios";
 import { showLoadingScreen, hideLoadingScreen } from "@/composables/LoadingScreen";
-import { showError } from "@/composables/Error";
+import { showError } from "@/composables/ErrorAlert";
 import router from "@/router";
 
 let isRefreshing: boolean = false;
@@ -61,7 +61,6 @@ api.interceptors.response.use(
           `${ import.meta.env.VITE_BaseURL }main/refresh?token=${ localStorage.getItem("refreshToken") }`
         );
         const newToken = response.data.data.access;
-        console.log(response.data.data)
         localStorage.setItem("accessToken", newToken);
         onTokenRefreshed(newToken);
         originalRequest.headers.Authorization = `Bearer ${ newToken }`;

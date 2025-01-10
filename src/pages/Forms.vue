@@ -37,7 +37,7 @@ const store = useStore();
                 </div>
                 <div 
                     v-else
-                    class="w-full h-full grid grid-cols-3 grid-rows-2 gap-2 pb-10"
+                    class="w-full h-full grid grid-cols-3 grid-rows-2 gap-x-10 gap-y-5 pb-10"
                 >
                     <FormCard
                         v-for="form in store.getForms"
