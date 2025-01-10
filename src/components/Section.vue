@@ -111,6 +111,3 @@ function duplicate() {
         </div>
     </div>
 </template>
-
-
-<style scoped></style>

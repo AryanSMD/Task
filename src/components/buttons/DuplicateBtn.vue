@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
     <button class="btn rounded-md">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-full aspect-square" viewBox="0 0 16 16">

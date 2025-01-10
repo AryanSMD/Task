@@ -23,13 +23,13 @@ function addNewSection() {
 }
 
 async function save() {
+    let response;
     if (editMode.value) {
-        const response = await updateFormAPI(store.newForm);
-        response?.status === 200 && router.push({ name: 'forms' });
+        response = await updateFormAPI(store.newForm);
     } else {
-        const response = await createFormAPI(store.newForm);
-        response?.status === 200 && router.push({ name: 'forms' });
+        response = await createFormAPI(store.newForm);
     }
+    response?.status === 200 && router.push({ name: 'forms' });
 }
 
 async function removeForm() {
@@ -42,15 +42,16 @@ onBeforeMount(async () => {
     const formId = route.params.id;
     if (formId !== 'add') {
         editMode.value = true;
+        !store.getForms.length &&
+            await router.push({ name: 'forms' });   
         store.newForm = store.getForms.filter(e => e.form_id === formId)[0];
-        !store.newForm && await router.push({ name: 'forms' })
     }
 })
 </script>
 
 
 <template>
-    <div class="w-full flex flex-col items-center gap-4 py-10">
+    <div class="w-full flex flex-col items-center gap-4 py-5 min-[1700px]:py-10">
         <div class="header">
             <div class="title">
                 {{ editMode ? 'ویرایش فرم' : 'ساخت فرم' }}

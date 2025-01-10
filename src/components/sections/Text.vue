@@ -3,6 +3,3 @@
         <input type="text" placeholder="پاسخ شما ...">
     </div>
 </template>
-
-
-<style scoped></style>

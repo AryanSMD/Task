@@ -3,6 +3,3 @@
         <textarea placeholder="پاسخ شما ..." />
     </div>
 </template>
-
-
-<style scoped></style>

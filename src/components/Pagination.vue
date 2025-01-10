@@ -10,7 +10,7 @@ const currentPage = ref <number> (1);
 
 
 const total = computed(() => 
-    Math.floor(store.getTotalFroms / store.getDefaultPerPage) + 1
+    Math.ceil(store.getTotalFroms / store.getDefaultPerPage)
 )
 
 const isFirstPage = computed(() => 

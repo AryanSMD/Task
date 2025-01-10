@@ -2,9 +2,8 @@
 import { validation } from '@/composables/validations';
 import { loginAPI } from '@/composables/api';
 import { Form, Field } from 'vee-validate';
-import type { AxiosResponse } from 'axios';
 import { useRouter } from 'vue-router';
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 const router = useRouter();
 const userInfo = ref <UserInfo> ({
@@ -19,7 +18,7 @@ async function login() {
     }
 }
 
-onMounted(() => {
+onBeforeMount(() => {
     localStorage.clear();
 })
 </script>
@@ -27,7 +26,7 @@ onMounted(() => {
 
 <template>
     <div class="w-full h-screen flex justify-center items-center">
-        <div class="w-1/4 bg-white rounded-[10px] shadow-md px-8 py-10">
+        <div class="w-[27%] bg-white rounded-[10px] shadow-md px-8 py-10">
             <div class="w-full font-bold text-primaryColor text-[2rem] mb-3">
                 خوش آمدید
             </div>

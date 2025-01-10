@@ -1,6 +1,3 @@
-<script setup lang="ts"></script>
-
-
 <template>
     <div class="w-full h-screen flex justify-center items-center">
         <div class="text-center font-medium text-primaryColor">
@@ -16,6 +13,3 @@
         </div>
     </div>
 </template>
-
-
-<style scoped></style>

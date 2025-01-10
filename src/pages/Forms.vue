@@ -8,7 +8,7 @@ const store = useStore();
 
 
 <template>
-    <div class="w-full h-screen flex flex-col items-center gap-4 py-10">
+    <div class="w-full h-screen flex flex-col items-center gap-4 py-5 min-[1700px]:py-10">
         <div class="header">
             <div class="title">فرم ها</div>
             <button 
@@ -52,6 +52,3 @@ const store = useStore();
         </div>
     </div>
 </template>
-
-
-<style scoped></style>

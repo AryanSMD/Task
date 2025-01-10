@@ -40,6 +40,11 @@ body {
     w-screen min-h-screen text-textColor text-[1rem]
 }
 
+.container {
+    @apply
+    w-[80%]
+}
+
 label {
     @apply
     w-full block text-primaryColor font-medium mb-2
@@ -157,5 +162,5 @@ select {
 
 .title {
     @apply
-    font-medium text-[2.5rem] text-primaryColor
+    font-medium text-[2rem] min-[1700px]:text-[2.5rem] text-primaryColor
 }

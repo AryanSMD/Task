@@ -41,6 +41,3 @@ const solarDate = computed(() => {
         </div>
     </div>
 </template>
-
-
-<style scoped></style>

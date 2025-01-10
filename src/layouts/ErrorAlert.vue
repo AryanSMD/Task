@@ -12,6 +12,3 @@ import { error, errorMsg } from '@/composables/ErrorAlert';
         {{ errorMsg }}
     </div>
 </template>
-
-
-<style scoped></style>
