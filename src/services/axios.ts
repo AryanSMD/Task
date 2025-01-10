@@ -68,7 +68,7 @@ api.interceptors.response.use(
 
       } 
       catch (err) {
-        showError('یک خطای غیر منتظره رخ داد');
+        showError('جلسه شما به پایان رسید. مجددا وارد شوید');
         router.push('/');
         return Promise.reject(err);
       } 
@@ -78,6 +78,7 @@ api.interceptors.response.use(
       }
     }
     hideLoadingScreen();
+    showError('یک خطای غیر منتظره رخ داد');
     return Promise.reject(error);
   }
 );
