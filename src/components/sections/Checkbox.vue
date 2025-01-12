@@ -20,8 +20,13 @@ function addItem() {
             class="flex items-center justify-between w-1/2"
         >
             <div>
-                <input type="checkbox" :id="`checkbox${ index }`">
-                <label :for="`checkbox${ index }`">{{ `گزینه ${ index + 1 }` }}</label>
+                <input 
+                    type="checkbox" 
+                    :id="`checkbox ${ props.sectionIndex } ${ index }`"
+                >
+                <label :for="`checkbox ${ props.sectionIndex } ${ index }`">
+                    {{ `گزینه ${ index + 1 }` }}
+                </label>
             </div>
             <button
                 class="mb-2 bg-textColor text-white rounded-full p-[2px]"

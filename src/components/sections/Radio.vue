@@ -20,8 +20,14 @@ function addItem() {
             class="flex items-center justify-between w-1/2"
         >
             <div>
-                <input type="radio" name="radio" :id="`radio${ index }`">
-                <label :for="`radio${ index }`">{{ `گزینه ${ index + 1 }` }}</label>
+                <input 
+                    type="radio" 
+                    :name="`radio ${ props.sectionIndex }`" 
+                    :id="`radio ${ props.sectionIndex } ${ index }`"
+                >
+                <label :for="`radio ${ props.sectionIndex } ${ index }`">
+                    {{ `گزینه ${ index + 1 }` }}
+                </label>
             </div>
             <button
                 class="mb-2 bg-textColor text-white rounded-full p-[2px]"
