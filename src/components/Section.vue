@@ -61,7 +61,7 @@ function changeRequired() {
 }
 
 function duplicate() {
-    const section = newForm.sections[props.sectionIndex];
+    const section = { ...newForm.sections[props.sectionIndex] };
     newForm.sections.push(section);
 }
 </script>

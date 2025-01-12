@@ -1,12 +1,10 @@
 import { ref } from "vue";
 
-export const error = ref <boolean> (false);
-export const errorMsg = ref <string> ('');
+export const errorAlertMsg = ref <string|null> (null);
 
 export function showError(val: string) {
-    errorMsg.value = val;
-    error.value = true;
+    errorAlertMsg.value = val;
     setTimeout(() => {
-        error.value = false;
+        errorAlertMsg.value = null;
     }, 5000)
 }
